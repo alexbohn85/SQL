@@ -1,0 +1,53 @@
+VEHICLES
+-VehicleID [PK]
+-ModelName
+-Size [Small, Medium, Van, Truck]
+
+
+CUSTOMERS
+-CustomerID [PK]
+-FirstName
+-LastName
+-CCNumber
+-CCLimit
+-CCExpireDate
+
+RENTS
+-RentID [PK]
+-CustomerID [FK]
+-VehicleID [FK]
+-TicketID [FK]
+-StartDate
+-EndDate
+-ContactSigned [Yes/No]
+-DropOff [Yes/No]
+
+
+TICKETS
+-TicketID [PK]
+-TicketNumber
+-Date
+
+DAMAGES
+-DamageID [PK]
+-CustomerID
+-Damage
+
+INSURANCES
+-InsuranceID [PK]
+-Type
+
+EMPLOYEES
+-EmployeeID [PK]
+-FirstName
+-LastName
+-JobType [part-time, full-time]
+-Branch [only one if full-time]
+
+BRANCHES
+-LocationID [PK]
+-Location
+
+RELATIONS
+
+RENTS - CUSTOMERS [ many to many ]
