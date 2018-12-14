@@ -1,0 +1,23 @@
+## CREATE a DATABASE
+CREATE DATABASE database_name
+
+## CREATE new TABLE in SQL
+CREATE TABLE IF NOT EXISTS products (
+    id INT AUTO_INCREMENT,
+    productName VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    price DOUBLE,
+    quantity TINYINT NOT NULL,
+    active BOOL NOT NULL,
+    created DATE,
+    modified DATE,
+    PRIMARY KEY (id)
+)  ENGINE=INNODB;
+
+## RENAME a TABLE
+ALTER TABLE table_name RENAME TO new_table_name;
+
+## UPDATE the quantity from SQL command
+UPDATE `table`
+SET `quantity` = 105, modified = CURRENT_TIMESTAMP
+WHERE `id` = 3;
