@@ -1,58 +1,175 @@
-VEHICLES
--VehicleID [PK]
--ModelName
--Size [Small, Medium, Van, Truck]
 
+---------------------- Customers ----------------------
+
+VEHICLES
+	-VehicleID [PK]
+	-VehicleTypeID [FK] - > references VEHICLE_TYPES(VehicleTypeID)
+	-CurrentLocation [FK] -> references BRANCHES(BranchID)
+	-VehicleModelID [FK] -> references VEHICLE_MODELS(VehicleModelID)
+	-VehicleColourID [FK] -> references VEHICLE_COLOURS(VehicleColourID)
+	-CurrentKM
+	-ManufacturedYear
+	-LicensePlate
+
+VEHICLE_COLOURS
+	-VehicleColourID [PK]
+	-ColorName
+
+VEHICLE_MODELS
+	-VehicleModelID [PK]
+	-VehicleManufacturersID [FK] -> references VEHICLE_MANUFACTURERS(VehicleManufacturersID)
+	-ModelName
+
+VEHICLE_MANUFACTURERS
+	-VehicleManufacturersID [PK]
+	-Manufacturer
+
+VEHICLE_TYPES
+	-VehicleTypeID [PK]
+	-Type [small, medium, van, truck]
+
+VEHICLE_DAMAGES
+	-VehicleDamageID [PK]
+	-VehicleID [FK] -> references VEHICLES(VehicleID)
+	-Damage
+
+
+---------------------- Customers ----------------------
 
 CUSTOMERS
--CustomerID [PK]
--FirstName
--LastName
--CCNumber
--CCLimit
--CCExpireDate
+	-CustomerID [PK]
+	-FirstName
+	-MiddleName
+	-LastName
+	-DriverLicenseNumber
+	-Street
+	-ZipCode
+	-CCNumber
+	-CCExpireDate
 
-RENTS
--RentID [PK]
--CustomerID [FK]
--VehicleID [FK]
--TicketID [FK]
--StartDate
--EndDate
--ContactSigned [Yes/No]
--DropOff [Yes/No]
+CUSTOMERS_CORPORATEACCOUNTS (BRIDGE)
+	-CustomerID [FK]
+	-CorporateAccountID [FK]
+
+CORPORATE_ACCOUNTS
+	-CorporateAccountID [PK]
+	-CompanyName
+	-Street
+	-ZipCode
+	-CCNumber
+	-CCExpireDate
 
 
-TICKETS
--TicketID [PK]
--TicketNumber
--Date
+---------------------- Phones ----------------------
 
-DAMAGES
--DamageID [PK]
--CustomerID
--Damage
+PHONENUMBERS
+	-PhoneID [PK]
+	-PhoneTypeID [FK]
+	-Number
+
+PHONETYPES
+	-PhoneTypeID [PK]
+	-Type
+
+	CUSTOMER_PHONES (BRIDGE)
+		-CustomerID [FK]
+		-PhoneID [FK]
+
+	CORPORATE_PHONES (BRIDGE)
+		-CorporateAccountID [FK]
+		-PhoneID [FK]
+
+
+---------------------- Emails ----------------------
+
+EMAILS
+	-EmailID [PK]
+	-EmailAddress
+
+	CUSTOMER_EMAILS (BRIDGE)
+		-CustomerID [FK]
+		-EmailID [FK]
+
+	CORPORATE_EMAILS (BRIDGE)
+		-CorporateAccountID [FK]
+		-EmailID [FK]
+
+
+---------------------- Rentals ----------------------
+
+RENTALS
+	-RentID [PK]
+	-VehicleID [FK] -> references VEHICLES(VehicleID)
+	-CustomerID [FK] -> references CUSTOMERS(CustomerID)
+	-PickupLocation [FK] -> references BRANCHES(BranchID)
+	-DropoffLocation [FK] -> references BRANCHES(BranchID)
+	-DropFee [FK] -> references FEES(FeeID)
+	-InsuranceID [FK] -> references INSURANCES(InsuranceID) NOT NULL
+	-CorporateRental [Yes/No]
+	-StartFuelGauge
+	-EndFuelGauge
+	-StartKm
+	-EndKm
+	-StartDate
+	-EndDate
+	-CCHoldOnFunds
+	-ContractSigned [Yes/No]
+
+RENTALDAMAGES
+	-RentalDamagesID [PK]
+	-RentID [FK] -> references RENTALS(RentID)
+	-Damage
 
 INSURANCES
--InsuranceID [PK]
--Type
+	-InsuranceID [PK]
+	-Type
+
+---------------------- Finance ----------------------
+FEES
+	-FeeID [PK]
+	-FeeName
+	-Price
+
+TICKETS
+	-TicketID [PK]
+	-CustomerID [FK] -> references CUSTOMERS(CustomerID)
+	-TicketNumber
+	-DueDate
+	-Paid
+
+
+---------------------- Employees ----------------------
 
 EMPLOYEES
--EmployeeID [PK]
--FirstName
--LastName
--JobType [part-time, full-time]
--Branch [only one if full-time]
+	-EmployeeID [PK]
+	-JobTypeID [FK] -> references JOBTYPES(JobTypeID)
+	-OccupationID [FK] references OCCUPATIONS(OccupationID)
+	-FirstName
+	-MiddleName
+	-LastName
+
+EMPLOYEE_PHONES (BRIDGE)
+	-EmployeeID [FK]
+	-PhoneID [FK]
+
+OCCUPATIONS
+	-OccupationID [PK]
+	-OccupationName
+
+JOBTYPES
+	-JobTypeID [PK]
+	-JobTypeName [part-time, full-time]
+	-AllowMultiSite [Yes/No]
+
+EMPLOYEE_BRANCHES (BRIDGE)
+	- EmployeeID [FK]
+	- BranchID [FK]
+
+
+---------------------- Company ----------------------
 
 BRANCHES
--LocationID [PK]
+-BranchID [PK]
 -Location
-
-RELATIONS
-
-RENTS >-< CUSTOMERS
-RENTS --- VEHICLES
-RENTS --< TICKETS
-RENTS
 
 
