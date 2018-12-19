@@ -1,0 +1,57 @@
+
+CLASSROOMS
+-classroomID [PK]
+-name
+-capacity
+
+COURSES
+-courseID [PK]
+-courseName
+-courseDuration
+
+TIMESLOTS
+-timeslotID [PK]
+-weekday
+-startTime
+-endTime
+
+CLASSES
+-classID [PK]
+-courseID [FK]
+-classroomID [FK]
+-timeslotID [FK] -- ADD UNIQUE (classroomID, timeslotID) room/period duplication
+-employeeID [FK] -- ADD UNIQUE (timeslotID, employeeID)
+
+ATTENDANCES
+-attendanceID [PK]
+-courseID [FK]
+-studentID [FK]
+-date
+-delayTime
+
+STUDENTS_CLASSES (BRIDGE)
+-studentID [FK]
+-classID [FK]
+
+STUDENTS
+-studentID [PK]
+-firstName
+-lastName
+-gender
+-street
+-city
+-country
+-phoneNumber
+-email
+
+EMPLOYEES
+-employeeID [PK]
+-firstName
+-lastName
+-jobtitleID [FK]
+
+JOBTITLES
+-jobtitleID [PK]
+-name
+
+
