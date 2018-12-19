@@ -10,19 +10,15 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>Login</h1>
-                <form action="loginCheck.php" method="POST">
+                <h1>Search User</h1>
+                <form action="doSearch.php" method="POST">
                     <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">                        
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
-                    </div>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                        <label for="query">Type your search</label>
+                        <input type="text" name="query" class="form-control" id="query">
+                    </div>                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
                     <br><br>
-                    <a href="index.php">New User? Sign up here!</a>
+                    <a href="login.php">go to Login Page</a>
                 </form>
             </div>
         </div>

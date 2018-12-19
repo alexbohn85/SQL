@@ -17,38 +17,40 @@
 				die("Connection failed: " . $conn->connect_error);
 			}			
 			
-			$user_email = $_POST["email"];
-			$user_password = $_POST["password"];
-			$user_password = md5($user_password);
-
-
+			$query = $_POST["query"];			
 			
-			$sql_query = "SELECT firstname, lastname FROM Users WHERE email = '$user_email' AND 
-							password = '$user_password'";
 			
+			
+			$sql_query = "SELECT * FROM Users 
+				WHERE firstname = '$query' OR lastname = '$query' OR email = '$query'";
+
 			$result = $conn->query($sql_query);			
-			
-			echo "DEBUG num of rows: " . $result->num_rows;
+			echo "num of rows: " . $result->num_rows;
 			
 			if($result->num_rows > 0){
-				echo "
-					<div class='container'>
-					    <div class='row'>
-					        <div class='col-12'>";
-					while($row = mysqli_fetch_assoc($result)){
-					                echo "<p>Welcome " . $row["firstname"] . " " . $row["lastname"] . "</p>";
-					}
+				$i = 1;
+				echo "<p>Results:</p>"
+				while($row = mysqli_fetch_assoc($result)){
+					echo "
+						<div class='container'>
+					        <div class='row'>
+					            <div class='col-12'>
+					                <p>".$i." - ".$row["email"]."</p>					                
+					            </div>
+					        </div>
+					    </div>
+	    			";
+	    			$i = $i + 1;
+				}
 
-				echo "<a href='search_user.php' class='btn btn-primary'>Search</a></div></div></div>";
-
-				
 			}else {				
 				echo "
 					<div class='container'>
 				        <div class='row'>
 				            <div class='col-12'>
-				                <p>Your login and/or password are incorrect, try again!</p>
-				                <a href='login.php' class='btn btn-primary'>Go Back</a>
+				                <p>Sorry, nothing was found in our database.</p>
+				                <a href='search_user.php' class='btn btn-primary'>Search</a>
+				                <a href='login.php' class='btn btn-primary'>Login Page</a>
 				            </div>
 				        </div>
 				    </div>

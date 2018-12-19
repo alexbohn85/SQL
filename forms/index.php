@@ -13,17 +13,25 @@
                 <h1>Registration</h1>
                 <form action="form.php" method="POST">
                     <div class="form-group">
+                        <label for="firstname">First name</label>
+                        <input type="text" name="firstname" class="form-control" id="firstname">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last name</label>
+                        <input type="text" name="lastname" class="form-control" id="lastname">
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+                        <input type="password" name="password" class="form-control" id="password">
                     </div>
                     <div class="form-group">
                         <label for="confirmpassword">Confirm Password</label>
-                        <input type="password" name="confirmpassword" class="form-control" id="confirmpassword" placeholder="Confirm password">
+                        <input type="password" name="confirmpassword" class="form-control" id="confirmpassword">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <br><br>
