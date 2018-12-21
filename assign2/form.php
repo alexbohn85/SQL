@@ -1,14 +1,9 @@
 <!doctype html>
 <html>
-    <head>
-        <title>ESL School Management System</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    </head>
+	<?php include("templateHead.php"); ?>
     <body>
 		<!-- Navigation Start -->
-		<?php include("template_navbar.php"); ?>
+		<?php include("templateNavbar.php"); ?>
 
 		<?php
 
@@ -42,9 +37,6 @@
 			debug('$user_city: ', $user_city);
 			debug('$user_country: ', $user_country);
 			debug('$user_phoneNumber: ', $user_phonenumber);
-
-			//validacao dos campos
-			//TODO			
 
 			// check if the user already exists in the database
 			$sql_query = "SELECT * FROM `Students` WHERE email = '$user_email'";

@@ -11,11 +11,14 @@
                 <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="new_student.php">Register</a>
+                <a class="nav-link" href="newStudent.php">New Student</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="listStudents.php">Students List</a>
               </li>
             </ul>
             <form class="form-inline my-2 my-sm-0" action="searchStudent.php" method="POST">
-              <input class="form-control mr-sm-2" type="search" name="search" size="30" placeholder="Search for student first name" aria-label="Search">
+              <input class="form-control mr-sm-2" type="search" name="search" size="30" placeholder="Type student first name here..." aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>

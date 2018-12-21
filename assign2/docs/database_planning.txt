@@ -11,9 +11,13 @@ COURSES
 
 TIMESLOTS
 -timeslotID [PK]
--weekday
+-weekdayID [FK]
 -startTime
 -endTime
+
+WEEKDAYS
+-weekdayID [PK]
+-weekdayName
 
 CLASSES
 -classID [PK]
@@ -21,13 +25,6 @@ CLASSES
 -classroomID [FK]
 -timeslotID [FK] -- ADD UNIQUE (classroomID, timeslotID) room/period duplication
 -employeeID [FK] -- ADD UNIQUE (timeslotID, employeeID)
-
-ATTENDANCES
--attendanceID [PK]
--courseID [FK]
--studentID [FK]
--date
--delayTime
 
 STUDENTS_CLASSES (BRIDGE)
 -studentID [FK]
@@ -48,10 +45,10 @@ EMPLOYEES
 -employeeID [PK]
 -firstName
 -lastName
--jobtitleID [FK]
+-occupationID [FK]
 
-JOBTITLES
--jobtitleID [PK]
--name
+OCCUPATIONS
+-occupationID [PK]
+-title
 
 
